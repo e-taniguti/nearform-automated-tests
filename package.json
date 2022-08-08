@@ -1,0 +1,21 @@
+{
+  "name": "nearform-automated-tests",
+  "version": "1.0.0",
+  "description": "UI Tests for NearForm.com",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/e-taniguti/nearform-automated-tests.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/e-taniguti/nearform-automated-tests/issues"
+  },
+  "homepage": "https://github.com/e-taniguti/nearform-automated-tests#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.24.2"
+  }
+}
