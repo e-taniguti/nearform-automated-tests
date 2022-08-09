@@ -1,14 +1,22 @@
 import { test, expect, type Page } from '@playwright/test';
 
-test.beforeEach(async ({ page }) => {
-  await page.goto('https://demo.playwright.dev/todomvc');
-});
+// test.beforeEach(async ({ page }) => {
+//   await page.goto('https://demo.playwright.dev/todomvc');
+// });
 
 const TODO_ITEMS = [
   'buy some cheese',
   'feed the cat',
   'book a doctors appointment'
 ];
+
+test('Clicking on Elements', async ({page}) => {
+  await page.goto('http://zero.webappsecurity.com/');
+  await page.click('#signin_button');
+  await expect(page.locator('h3')).toHaveText('Log in to ZeroBank');
+  await page.click('text=Sign in');
+  await expect(page.locator('.alert-error')).toHaveText('Login and/or password are wrong.');
+});
 
 test.describe('New Todo', () => {
   test('should allow me to add todo items', async ({ page }) => {

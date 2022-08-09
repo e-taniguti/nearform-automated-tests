@@ -16,6 +16,7 @@
   },
   "homepage": "https://github.com/e-taniguti/nearform-automated-tests#readme",
   "devDependencies": {
-    "@playwright/test": "^1.24.2"
+    "@playwright/test": "^1.24.2",
+    "axe-playwright": "^1.1.11"
   }
 }

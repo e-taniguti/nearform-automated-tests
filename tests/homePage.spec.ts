@@ -1,9 +1,22 @@
 // @ts-check
 import { test, expect } from '@playwright/test';
+import { injectAxe, checkA11y } from 'axe-playwright';
 
 test.describe('Home Page tests', () => {
   test.beforeEach(async ({ page }, testInfo) => {
-    await page.goto('https://www.nearform.com/');
+    await page.goto('/');
+  });
+
+  test.describe('Accessibility test', () => {
+    test.skip('verify home page passes A11y', async ({ page }) => {
+      await injectAxe(page);
+      await checkA11y(page, null, {
+        detailedReport: true,
+        detailedReportOptions: {
+          html: true
+        } 
+      });
+    });
   });
 
   test.describe('Header Menu tests', () => {
@@ -57,6 +70,14 @@ test.describe('Home Page tests', () => {
       // Expect menu to have correct labels.
       await expect(subMenuOptions).toHaveText(['Blog', 'Events']);
     });
+
+    test.skip('verify Contact page opens', async ({page}) => {
+      const contactButton = page.locator('#menu-main-menu > li > a').nth(5);
+      await expect(contactButton).toHaveText('Contact');
+      await contactButton.click();
+      await expect(page).toHaveURL('/.*contact/');
+    });
+
   });
 
   test.describe('Page Content tests', () => {
@@ -126,35 +147,13 @@ test.describe('Home Page tests', () => {
 
     });
 
-    test('verify Footer content', async ({page}) => {
+    test('verify Footer content is displayed', async ({page}) => {
       // create a locator
-      const titles = page.locator('.fusion-footer >> [class ^= "title-heading"]');
-      const paragraphs = page.locator('.fusion-footer >> p');
-      const contactButtons = page.locator('.fusion-footer >> a:has-text("Contact")');
-      const signUpButton = page.locator('.fusion-footer >> a:has-text("Sign Up")');
-      await expect(titles).toHaveText([
-        'Don’t miss a beat',
-        'Social',
-        'What We Do',
-        'About',
-        'Resources'
-      ]);
-
-      await expect(paragraphs).toHaveText([
-        'Let’s Chat',
-        'Get all the latest NearForm news, from technology to design.',
-        '© Copyright 2022 NearForm Ltd. All Rights Reserved.',
-        'NearForm Ltd. Tankfield, Convent Hill, Tramore, Co. Waterford, X91 PV08, Ireland. Privacy Policy. Cookies Notice.',
-      ]);
-
-      await expect(contactButtons.nth(0)).toBeVisible();
-      await expect(contactButtons.nth(0)).toHaveAttribute('href', '/contact/');
-
-      await expect(signUpButton).toBeVisible();
-      await expect(signUpButton).toHaveAttribute('href', '/newsletter/');
-
+      const footerContext = page.locator('.fusion-tb-footer.fusion-footer');
+  
+      await expect(footerContext).toBeVisible();
     });
-
+  
   });
 });
 
