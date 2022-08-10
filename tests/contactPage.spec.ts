@@ -1,14 +1,17 @@
 // @ts-check
 import { test, expect } from '@playwright/test';
 import { injectAxe, checkA11y } from 'axe-playwright';
+import { Utils } from '../utils/utils';
+
 
 test.describe('Contact Page tests', () => {
   test.beforeEach(async ({ page }, testInfo) => {
-    await page.goto('/contact/');
+    const utils = new Utils(page);
+    await utils.navigateTo('/contact/');
   });
 
-  test.describe('Accessibility test', () => {
-    test.skip('verify home page passes A11y', async ({ page }) => {
+  test.describe.skip('Accessibility test', () => {
+    test('verify home page passes A11y', async ({ page }) => {
       await injectAxe(page);
       await checkA11y(page, null, {
         detailedReport: true,
@@ -73,16 +76,22 @@ test.describe('Contact Page tests', () => {
     await expect(submitButton).toBeEnabled();
   });
 
-  test.skip('verify form required fields', async ({ page }) => {
+  test('verify form required fields', async ({ page }) => {
     const submitButton = page.frameLocator('#hs-form-iframe-0').locator('text=Submit');
-    const errorMessages = page.frameLocator('#hs-form-iframe-0').locator('.hs-error-msg');
+    const errorMessages = page.frameLocator('#hs-form-iframe-0').locator('.hs-error-msgs');
     
     await expect(errorMessages).toHaveCount(0);
     await submitButton.click();
-    await expect(errorMessages).toHaveCount(7);
-
-
-
+    await expect(errorMessages).toHaveText([
+      'Please complete this required field.',
+      'Please complete this required field.',
+      'Please complete this required field.',
+      'Please complete this required field.',
+      'Please complete this required field.',
+      'Please select an option from the dropdown menu.',
+      'Please complete this required field.',
+      'Please complete all required fields.',      
+    ]);
   });
 
   test('verify Footer content is displayed', async ({page}) => {

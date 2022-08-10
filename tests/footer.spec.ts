@@ -1,37 +1,31 @@
 // @ts-check
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
+
+import { Utils } from '../utils/utils';
+import { FooterPage } from '../pages/footerPage';
 
 test.describe('Footer tests', () => {
-  test.beforeEach(async ({ page }, testInfo) => {
-    await page.goto('/');
+  test.beforeEach(async ({ page }) => {
+    const utils = new Utils(page);
+    await utils.navigateTo('/');
   });
 
   test('verify Footer content', async ({page}) => {
-    // create a locator
-    const titles = page.locator('.fusion-footer >> [class ^= "title-heading"]');
-    const paragraphs = page.locator('.fusion-footer >> p');
-    const contactButtons = page.locator('.fusion-footer >> a:has-text("Contact")');
-    const signUpButton = page.locator('.fusion-footer >> a:has-text("Sign Up")');
-    await expect(titles).toHaveText([
-      'Don’t miss a beat',
-      'Social',
-      'What We Do',
-      'About',
-      'Resources'
-    ]);
-
-    await expect(paragraphs).toHaveText([
-      'Let’s Chat',
-      'Get all the latest NearForm news, from technology to design.',
-      '© Copyright 2022 NearForm Ltd. All Rights Reserved.',
-      'NearForm Ltd. Tankfield, Convent Hill, Tramore, Co. Waterford, X91 PV08, Ireland. Privacy Policy. Cookies Notice.',
-    ]);
-
-    await expect(contactButtons.nth(0)).toBeVisible();
-    await expect(contactButtons.nth(0)).toHaveAttribute('href', '/contact/');
-
-    await expect(signUpButton).toBeVisible();
-    await expect(signUpButton).toHaveAttribute('href', '/newsletter/');
+    const footerPage = new FooterPage(page);
+    // Verify texts
+    await footerPage.assertTitles();
+    await footerPage.assertParagraphs();
+    // Verify social media links
+    await footerPage.assertSocialMediaLinks();
+    // Verify What We Do labels and links
+    await footerPage.assertWhatWeDoOptions();
+    // Verify About labels and links
+    await footerPage.assertAboutOptions();
+    // Verify Resources labels and links
+    await footerPage.assertResourcesOptions();
+    // Verify buttons
+    await footerPage.assertContactButton();
+    await footerPage.assertSignUpButton();
 
   });
 

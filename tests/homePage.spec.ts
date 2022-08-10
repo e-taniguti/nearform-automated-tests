@@ -1,47 +1,95 @@
 // @ts-check
-import { test, expect } from '@playwright/test';
+import { chromium, test, expect } from '@playwright/test';
 import { injectAxe, checkA11y } from 'axe-playwright';
+import { Utils } from '../utils/utils';
 
-test.describe('Home Page tests', () => {
+test.describe('Home Page tests - Mobile', () => {
+  test('verify Logo and menu links', async () => {
+    const browser = await chromium.launch();
+    const page = await browser.newPage({
+      viewport: {
+        width: 1080,
+        height: 720
+      }
+    });
+    const utils = new Utils(page);
+    await utils.navigateTo('/');
+
+    // create a locator
+    const logo = page.locator('#logo > a');
+    const menuButton = page.locator('button:has-text("Menu")');
+    const menuItems = page.locator('#menu-main-menu > li');
+    const menuLinks = menuItems.locator('> a');
+    const subMenus = page.locator('#menu-main-menu >> ul');
+    const servicesExpandButton = menuItems.locator('button[aria-label="Open submenu of What We Do"]');
+    const serviceOptions = subMenus.nth(0).locator('a');
+    const aboutExpandButton = menuItems.locator('button[aria-label="Open submenu of About"]');
+    const aboutOptions = subMenus.nth(1).locator('a');
+    const resourceExpandButton = menuItems.locator('button[aria-label="Open submenu of Resources"]');
+    const resourceOptions = subMenus.nth(2).locator('a');
+
+    // Expect a title "to contain" a substring.
+    await expect(page).toHaveTitle(/Enterprise Software Development/);
+
+    // Expect logo to have the correct link.
+    await expect(logo).toBeVisible();
+    await expect(logo).toHaveAttribute('href', 'https://www.nearform.com/');
+
+    // Expect button Menu to be displayed.
+    await expect(menuButton).toHaveText('Menu');
+    await expect(menuButton).toBeVisible();
+    await menuButton.click();
+
+    // Expect menu to have correct labels.
+    await expect(menuLinks).toHaveText(['What We Do', 'Work', 'About', 'CareersHIRING!', 'Resources', 'Contact']);
+
+    await resourceExpandButton.click();
+    await expect(resourceOptions).toHaveText(['Blog', 'Events']);
+
+    await aboutExpandButton.click();
+    await expect(aboutOptions).toHaveText(['About NearForm', 'Why NearForm', 'Open Source']);
+
+    await servicesExpandButton.click();
+    await expect(serviceOptions).toHaveText(['Product Development', 'Application Modernisation', 'DevOps & Platform Engineering', 'Data Engineering & Analytics']);
+  });
+});
+
+test.describe('Home Page tests - Web', () => {
   test.beforeEach(async ({ page }, testInfo) => {
-    await page.goto('/');
+    const utils = new Utils(page);
+    await utils.navigateTo('/');
   });
 
-  test.describe('Accessibility test', () => {
-    test.skip('verify home page passes A11y', async ({ page }) => {
+  test.describe.skip('Accessibility test', () => {
+    test('verify home page passes A11y', async ({ page }) => {
       await injectAxe(page);
       await checkA11y(page, null, {
         detailedReport: true,
         detailedReportOptions: {
           html: true
-        } 
+        }
       });
     });
   });
 
   test.describe('Header Menu tests', () => {
     test('verify Logo and menu links', async ({ page }) => {
-      // Expect a title "to contain" a substring.
-      await expect(page).toHaveTitle(/Enterprise Software Development/);
-    
       // create a locator
       const logo = page.locator('#logo > a');
       const menuLinks = page.locator('#menu-main-menu > li > a');
-    
+      const menuButton = page.locator('button:has-text("Menu")');
+
+      // Expect a title "to contain" a substring.
+      await expect(page).toHaveTitle(/Enterprise Software Development/);
+
       // Expect logo to have the correct link.
       await expect(logo).toBeVisible();
       await expect(logo).toHaveAttribute('href', 'https://www.nearform.com/');
-    
+
       // Expect menu to have correct labels.
       await expect(menuLinks).toHaveText(['What We Do', 'Work', 'About', 'CareersHIRING!', 'Resources', 'Contact']);
 
-      // Expect menu to have correct links.
-      await expect(menuLinks.nth(0)).toHaveAttribute('href', 'https://www.nearform.com/services/');
-      await expect(menuLinks.nth(1)).toHaveAttribute('href', 'https://www.nearform.com/work/');
-      await expect(menuLinks.nth(2)).toHaveAttribute('href', 'https://www.nearform.com/about/');
-      await expect(menuLinks.nth(3)).toHaveAttribute('href', 'https://www.nearform.com/careers/');
-      await expect(menuLinks.nth(4)).toHaveAttribute('href', 'https://www.nearform.com/blog/');
-      await expect(menuLinks.nth(5)).toHaveAttribute('href', 'https://www.nearform.com/contact/');
+      await expect(menuButton).not.toBeVisible();
     });
 
     test('verify What We Do options', async ({ page }) => {
@@ -71,17 +119,47 @@ test.describe('Home Page tests', () => {
       await expect(subMenuOptions).toHaveText(['Blog', 'Events']);
     });
 
-    test.skip('verify Contact page opens', async ({page}) => {
-      const contactButton = page.locator('#menu-main-menu > li > a').nth(5);
-      await expect(contactButton).toHaveText('Contact');
+    test('verify What We Do page opens', async ({ page }) => {
+      const servicesButton = page.locator('#menu-main-menu > li > a').locator(':has-text("What We Do")');
+      await servicesButton.click();
+      await expect(page).toHaveURL('/services/');
+    });
+
+    test('verify Work page opens', async ({ page }) => {
+      const workButton = page.locator('#menu-main-menu > li > a').locator(':has-text("Work")');
+      await workButton.click();
+      await expect(page).toHaveURL('/work/');
+    });
+
+    test('verify About page opens', async ({ page }) => {
+      const aboutButton = page.locator('#menu-main-menu > li > a').locator(':has-text("About")');
+      await aboutButton.click();
+      await expect(page).toHaveURL('/about/');
+    });
+
+
+    test('verify Careers page opens', async ({ page }) => {
+      const careersButton = page.locator('#menu-main-menu > li > a').locator(':text-matches("^Careers")');
+      await careersButton.click();
+      await expect(page).toHaveURL('/careers/');
+    });
+
+    test('verify Blog page opens', async ({ page }) => {
+      const resourcesButton = page.locator('#menu-main-menu > li > a').locator(':has-text("Resources")');
+      await resourcesButton.click();
+      await expect(page).toHaveURL('/blog/');
+    });
+
+    test('verify Contact page opens', async ({ page }) => {
+      const contactButton = page.locator('#menu-main-menu > li > a').locator(':has-text("Contact")');
       await contactButton.click();
-      await expect(page).toHaveURL('/.*contact/');
+      await expect(page).toHaveURL('/contact/');
     });
 
   });
 
   test.describe('Page Content tests', () => {
-    test('verify Main content', async ({page}) => {
+    test('verify Main content', async ({ page }) => {
       // create a locator
       const titles = page.locator('#main >> [class ^= "title-heading"]');
       const texts = page.locator('#main >> .fusion-text > p');
@@ -108,7 +186,7 @@ test.describe('Home Page tests', () => {
         'We believe that great things happen when you get the very best talent working on the toughest problems. Our culture empowers us to produce great work and great outcomes, both professional and personal.',
         'We live this culture every day as a company with over ten years of remote-first operation, sourcing the very best talent from thirty countries and connecting through client projects, open source communities and constant conversation and collaboration.',
         'Every NearFormer is challenged to strive, learn and grow and is supported by a strongly bonded team that believes in the work we do.',
-    ]);
+      ]);
 
       await expect(contentBoxTexts).toHaveText([
         'We design, architect and engineer digital products to improve business outcomes, simplify workflows and drive growth.',
@@ -118,15 +196,15 @@ test.describe('Home Page tests', () => {
       ]);
 
       await expect(blogTitles).toContainText([
+        'The Human-Centric CIO',
         'Secure DevOps: The What, the Why and the How',
         'Deploying with Google Compute Engine on Google Cloud Platform',
-        'Vlog: On the Road Again, Episode 1',
       ]);
 
       await expect(blogTexts).toContainText([
+        'Digital Transformation, Innovation, Interviews',
         'Capability Building, DevOps, Security',
         'Cloud Native, DevOps, DevRel',
-        'DevRel, Remote Working, Video',
       ]);
 
       await expect(learnMoreButton).toBeVisible();
@@ -136,24 +214,24 @@ test.describe('Home Page tests', () => {
       await expect(applyNowButton).toHaveAttribute('href', '/careers/');
 
       await expect(readMoreButtons.nth(0)).toBeVisible();
-      await expect(readMoreButtons.nth(0)).toHaveAttribute('href', 'https://www.nearform.com/blog/secure-devops-what-why-how/');
+      await expect(readMoreButtons.nth(0)).toHaveAttribute('href', 'https://www.nearform.com/blog/human-centric-cio/');
       await expect(readMoreButtons.nth(1)).toBeVisible();
-      await expect(readMoreButtons.nth(1)).toHaveAttribute('href', 'https://www.nearform.com/blog/deploying-with-google-compute-engine-on-gcp/');
+      await expect(readMoreButtons.nth(1)).toHaveAttribute('href', 'https://www.nearform.com/blog/secure-devops-what-why-how/');
       await expect(readMoreButtons.nth(2)).toBeVisible();
-      await expect(readMoreButtons.nth(2)).toHaveAttribute('href', 'https://www.nearform.com/blog/vlog-on-the-road-again-episode-1/');
+      await expect(readMoreButtons.nth(2)).toHaveAttribute('href', 'https://www.nearform.com/blog/deploying-with-google-compute-engine-on-gcp/');
 
       await expect(viewBlogButton).toBeVisible();
       await expect(viewBlogButton).toHaveAttribute('href', '/blog/');
 
     });
 
-    test('verify Footer content is displayed', async ({page}) => {
+    test('verify Footer content is displayed', async ({ page }) => {
       // create a locator
       const footerContext = page.locator('.fusion-tb-footer.fusion-footer');
-  
+
       await expect(footerContext).toBeVisible();
     });
-  
+
   });
 });
 
