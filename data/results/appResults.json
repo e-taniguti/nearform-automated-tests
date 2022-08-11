@@ -1,0 +1,157 @@
+{
+    "appTitle" : "Enterprise Software Development & Capability Building",
+    "pages" : {
+        "header" : {
+            "menuLabels" : [
+                "What We Do",
+                "Work",
+                "About",
+                "CareersHIRING!",
+                "Resources",
+                "Contact"
+            ],
+            "aboutOptionsLabels" : [
+                "About NearForm", 
+                "Why NearForm",
+                "Open Source"
+            ],
+            "resourcesOptionsLabels" : [
+                "Blog", 
+                "Events"
+            ],
+            "servicesOptionsLabels" : [
+                "Product Development",
+                "Application Modernisation",
+                "DevOps & Platform Engineering",
+                "Data Engineering & Analytics"
+            ]
+        },
+        "footer" : {
+            "titles" : [
+                "Don’t miss a beat",
+                "Social",
+                "What We Do",
+                "About",
+                "Resources"
+            ],
+            "paragraphs" : [
+                "Let’s Chat",
+                "Get all the latest NearForm news, from technology to design.",
+                "© Copyright 2022 NearForm Ltd. All Rights Reserved.",
+                "NearForm Ltd. Tankfield, Convent Hill, Tramore, Co. Waterford, X91 PV08, Ireland. Privacy Policy. Cookies Notice."
+            ],
+            "servicesLabels" : [
+                "Product Development",
+                "Application Modernisation",
+                "DevOps & Platform Engineering",
+                "Data Engineering & Analytics"
+            ],
+            "aboutLabels" : [
+                "Accessibility",
+                "Careers",
+                "Contact",
+                "Our Work",
+                "Open Source",
+                "Why NearForm"
+            ],
+            "resourceLabels" : [
+                "Blog",
+                "Events"
+            ]
+        },
+        "home" : {
+            "titles" : [
+                "Creating Digital Advantage",
+                "What We Do",
+                "Our Services",
+                "Our Work",
+                "Our Culture",
+                "Latest Insights"
+            ],
+            "paragraphs" : [
+                "We design and build future-ready digital products to accelerate transformation and create digital capability.",
+                "Accelerating transformation through:",
+                "We believe that great things happen when you get the very best talent working on the toughest problems. Our culture empowers us to produce great work and great outcomes, both professional and personal.",
+                "We live this culture every day as a company with over ten years of remote-first operation, sourcing the very best talent from thirty countries and connecting through client projects, open source communities and constant conversation and collaboration.",
+                "Every NearFormer is challenged to strive, learn and grow and is supported by a strongly bonded team that believes in the work we do."
+            ],
+            "contentBoxesParagraphs" : [
+                "We design, architect and engineer digital products to improve business outcomes, simplify workflows and drive growth.",
+                "We transform complex, monolithic legacy applications into modern digital platforms to accelerate business outcomes.",
+                "We embed DevSecOps and engineering practices to create developer-facing platforms that accelerate software delivery.",
+                "We make high quality data and insights readily available, empowering teams to solve business-critical challenges."
+            ]
+        },
+        "contact" : {
+            "bannerText" : [
+                "Sales",
+                "sales@nearform.com",
+                "Recruitment",
+                "careers@nearform.com",
+                "Enquiries",
+                "info@nearform.com"
+            ],
+            "consentDisclaimer" : "You may unsubscribe from these communications at anytime. For information on how to unsubscribe, check out our Privacy Policy.",
+            "formTitle" : "Contact Us",
+            "formTexts" : [
+                "Send us an email and we’ll get back to you within 24 hours.",
+                "International",
+                "+353 51 330 290",
+                "United States",
+                "(916) 299-6882",
+                "United Kingdom",
+                "0870 067 95569",
+                "Ireland",
+                "051 330 290",
+                "Address",
+                "NearForm Tankfield, Convent Hill Tramore Co. Waterford X91 PV08 Ireland"
+            ],
+            "formLabels" : [
+                "First Name (required)*",
+                "Last Name (required)*",
+                "Email (required)*",
+                "Job Title (required)*",
+                "Country code and phone number",
+                "Organisation Name (required)*",
+                "Please select your enquiry below: (required)*",
+                "How Can We Help? (required)*"
+            ],
+            "formRequiredMessages" : [
+                "Please complete this required field.",
+                "Please complete this required field.",
+                "Please complete this required field.",
+                "Please complete this required field.",
+                "Please complete this required field.",
+                "Please select an option from the dropdown menu.",
+                "Please complete this required field.",
+                "Please complete all required fields."     
+            ]
+        }
+    },
+    "links" : {
+        "accessibilityStatement" : "https://www.nearform.com/accessibility-statement/",
+        "applicationModernisation" : "https://www.nearform.com/services/application-modernisation/",
+        "blog" : "https://www.nearform.com/blog/",
+        "blogShort" : "/blog/",
+        "carrers" : "https://www.nearform.com/careers/",
+        "careersShort" : "/careers/",
+        "contact" : "https://www.nearform.com/contact/",
+        "contactShort" : "/contact/",
+        "devopsPlatformEngineering" : "https://www.nearform.com/services/devops-platform-engineering/",
+        "digitalProductDevelopment" : "https://www.nearform.com/services/digital-product-development/",
+        "enterpriseDataEngineering" : "https://www.nearform.com/services/enterprise-data-engineering/",
+        "events" : "https://www.nearform.com/events/",
+        "facebook" : "https://www.facebook.com/NearFormLtd",
+        "instagram" : "https://www.instagram.com/nearform_hq",
+        "linkedIn" : "https://www.linkedin.com/company/nearform/?originalSubdomain=ie",
+        "nearform" : "https://www.nearform.com/",
+        "openSourceCommunity" : "https://www.nearform.com/open-source-community/",
+        "privacyPolicy" : "https://www.nearform.com/privacy-statement/",
+        "signUp" : "/newsletter/",
+        "tweeter" : "https://twitter.com/nearform",
+        "whatWeDo" : "/what-we-do/",
+        "whyNearForm" : "https://www.nearform.com/why-nearform/",
+        "work" : "https://www.nearform.com/work/",
+        "youtube" : "https://www.youtube.com/channel/UCp2Tsbjd3P8itnBHUNHi82A"
+    }
+}

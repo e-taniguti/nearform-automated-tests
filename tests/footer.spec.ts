@@ -7,25 +7,25 @@ import { FooterPage } from '../pages/footerPage';
 test.describe('Footer tests', () => {
   test.beforeEach(async ({ page }) => {
     const utils = new Utils(page);
-    await utils.navigateTo('/');
+    await utils.visit('/');
   });
 
   test('verify Footer content', async ({page}) => {
-    const footerPage = new FooterPage(page);
+    const footer = new FooterPage(page);
     // Verify texts
-    await footerPage.assertTitles();
-    await footerPage.assertParagraphs();
+    await footer.assertTitles();
+    await footer.assertParagraphs();
     // Verify social media links
-    await footerPage.assertSocialMediaLinks();
+    await footer.assertSocialMediaLinks();
     // Verify What We Do labels and links
-    await footerPage.assertWhatWeDoOptions();
+    await footer.assertWhatWeDoOptions();
     // Verify About labels and links
-    await footerPage.assertAboutOptions();
+    await footer.assertAboutOptions();
     // Verify Resources labels and links
-    await footerPage.assertResourcesOptions();
+    await footer.assertResourcesOptions();
     // Verify buttons
-    await footerPage.assertContactButton();
-    await footerPage.assertSignUpButton();
+    await footer.assertContactButton();
+    await footer.assertSignUpButton();
 
   });
 

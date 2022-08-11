@@ -1,59 +1,40 @@
 import { expect, Locator, Page } from "@playwright/test";
+import * as results from "../data/results/appResults.json";
 
-const titleValues = [
-    'Don’t miss a beat',
-    'Social',
-    'What We Do',
-    'About',
-    'Resources'
-];
-const paragraphValues = [
-    'Let’s Chat',
-    'Get all the latest NearForm news, from technology to design.',
-    '© Copyright 2022 NearForm Ltd. All Rights Reserved.',
-    'NearForm Ltd. Tankfield, Convent Hill, Tramore, Co. Waterford, X91 PV08, Ireland. Privacy Policy. Cookies Notice.',
-];
-const whatWeDoOptions = [
-    'Product Development',
-    'Application Modernisation',
-    'DevOps & Platform Engineering',
-    'Data Engineering & Analytics'
-];
-const aboutOptions = [
-    'Accessibility',
-    'Careers',
-    'Contact',
-    'Our Work',
-    'Open Source',
-    'Why NearForm',
-];
-const resourceOptions = [
-    'Blog',
-    'Events',
-];
+const titleValues = results.pages.footer.titles;
+const paragraphValues = results.pages.footer.paragraphs;
+const whatWeDoLabels = results.pages.footer.servicesLabels;
+const aboutLabels = results.pages.footer.aboutLabels;
+const resourceLabels = results.pages.footer.resourceLabels;
 
 export class FooterPage {
     // Types definition
     readonly page: Page;
-    readonly titles: Locator;
-    readonly paragraphs: Locator;
+    readonly companyLinks: Locator;
     readonly contactButtons: Locator;
+    readonly footerContext: Locator;    
+    readonly paragraphs: Locator;
+    readonly resourcesLinks: Locator;
+    readonly servicesLinks: Locator;
     readonly signUpButton: Locator;
     readonly socialLinks: Locator;
-    readonly servicesLinks: Locator;
-    readonly companyLinks: Locator;
-    readonly resourcesLinks: Locator;
+    readonly titles: Locator;
 
     constructor(page: Page) {
         this.page = page;
-        this.titles = page.locator('.fusion-tb-footer.fusion-footer >> [class ^= "title-heading"]');
-        this.paragraphs = page.locator('.fusion-tb-footer.fusion-footer >> p');
-        this.contactButtons = page.locator('.fusion-tb-footer.fusion-footer >> a:has-text("Contact")');
-        this.signUpButton = page.locator('.fusion-tb-footer.fusion-footer >> a:has-text("Sign Up")');
-        this.socialLinks = page.locator('.fusion-tb-footer.fusion-footer >> .fusion-social-links-1 >> a');
+        this.footerContext = page.locator('.fusion-tb-footer.fusion-footer');
+        this.titles = this.footerContext.locator('[class ^= "title-heading"]');
+        this.paragraphs = this.footerContext.locator('p');
+        this.contactButtons = this.footerContext.locator('a:has-text("Contact")');
+        this.signUpButton = this.footerContext.locator('a:has-text("Sign Up")');
+        this.socialLinks = this.footerContext.locator('.fusion-social-links-1 >> a');
         this.servicesLinks = page.locator('#menu-global-footer-services >> a');
         this.companyLinks = page.locator('#menu-global-footer-company >> a');
         this.resourcesLinks = page.locator('#menu-global-footer-resources >> a');
+    };
+
+    async isFooterVisible() {
+        await expect(this.footerContext).toBeVisible();
     };
 
     async assertTitles() {
@@ -65,45 +46,45 @@ export class FooterPage {
     };
 
     async assertSocialMediaLinks() {
-        await expect(this.socialLinks.nth(0)).toHaveAttribute('href', 'https://www.linkedin.com/company/nearform/?originalSubdomain=ie');
-        await expect(this.socialLinks.nth(1)).toHaveAttribute('href', 'https://twitter.com/nearform');
-        await expect(this.socialLinks.nth(2)).toHaveAttribute('href', 'https://www.facebook.com/NearFormLtd');
-        await expect(this.socialLinks.nth(3)).toHaveAttribute('href', 'https://www.youtube.com/channel/UCp2Tsbjd3P8itnBHUNHi82A');
-        await expect(this.socialLinks.nth(4)).toHaveAttribute('href', 'https://www.instagram.com/nearform_hq');
+        await expect(this.socialLinks.nth(0)).toHaveAttribute('href', results.links.linkedIn);
+        await expect(this.socialLinks.nth(1)).toHaveAttribute('href', results.links.tweeter);
+        await expect(this.socialLinks.nth(2)).toHaveAttribute('href', results.links.facebook);
+        await expect(this.socialLinks.nth(3)).toHaveAttribute('href', results.links.youtube);
+        await expect(this.socialLinks.nth(4)).toHaveAttribute('href', results.links.instagram);
     };
 
     async assertWhatWeDoOptions() {
-        await expect(this.servicesLinks).toHaveText(whatWeDoOptions);      
-        await expect(this.servicesLinks.nth(0)).toHaveAttribute('href', 'https://www.nearform.com/services/digital-product-development/');
-        await expect(this.servicesLinks.nth(1)).toHaveAttribute('href', 'https://www.nearform.com/services/application-modernisation/');
-        await expect(this.servicesLinks.nth(2)).toHaveAttribute('href', 'https://www.nearform.com/services/devops-platform-engineering/');
-        await expect(this.servicesLinks.nth(3)).toHaveAttribute('href', 'https://www.nearform.com/services/enterprise-data-engineering/');    
+        await expect(this.servicesLinks).toHaveText(whatWeDoLabels);      
+        await expect(this.servicesLinks.nth(0)).toHaveAttribute('href', results.links.digitalProductDevelopment);
+        await expect(this.servicesLinks.nth(1)).toHaveAttribute('href', results.links.applicationModernisation);
+        await expect(this.servicesLinks.nth(2)).toHaveAttribute('href', results.links.devopsPlatformEngineering);
+        await expect(this.servicesLinks.nth(3)).toHaveAttribute('href', results.links.enterpriseDataEngineering);    
     };
 
     async assertAboutOptions() {
-        await expect(this.companyLinks).toHaveText(aboutOptions);
-        await expect(this.companyLinks.nth(0)).toHaveAttribute('href', 'https://www.nearform.com/accessibility-statement/');
-        await expect(this.companyLinks.nth(1)).toHaveAttribute('href', 'https://www.nearform.com/careers/');
-        await expect(this.companyLinks.nth(2)).toHaveAttribute('href', 'https://www.nearform.com/contact/');
-        await expect(this.companyLinks.nth(3)).toHaveAttribute('href', 'https://www.nearform.com/work/');
-        await expect(this.companyLinks.nth(4)).toHaveAttribute('href', 'https://www.nearform.com/open-source-community/');
-        await expect(this.companyLinks.nth(5)).toHaveAttribute('href', 'https://www.nearform.com/why-nearform/');    
+        await expect(this.companyLinks).toHaveText(aboutLabels);
+        await expect(this.companyLinks.nth(0)).toHaveAttribute('href', results.links.accessibilityStatement);
+        await expect(this.companyLinks.nth(1)).toHaveAttribute('href', results.links.carrers);
+        await expect(this.companyLinks.nth(2)).toHaveAttribute('href', results.links.contact);
+        await expect(this.companyLinks.nth(3)).toHaveAttribute('href', results.links.work);
+        await expect(this.companyLinks.nth(4)).toHaveAttribute('href', results.links.openSourceCommunity);
+        await expect(this.companyLinks.nth(5)).toHaveAttribute('href', results.links.whyNearForm);    
     };
 
     async assertResourcesOptions() {
-        await expect(this.resourcesLinks).toHaveText(resourceOptions);
-        await expect(this.resourcesLinks.nth(0)).toHaveAttribute('href', 'https://www.nearform.com/blog/');
-        await expect(this.resourcesLinks.nth(1)).toHaveAttribute('href', 'https://www.nearform.com/events/');    
+        await expect(this.resourcesLinks).toHaveText(resourceLabels);
+        await expect(this.resourcesLinks.nth(0)).toHaveAttribute('href', results.links.blog);
+        await expect(this.resourcesLinks.nth(1)).toHaveAttribute('href', results.links.events);    
     };
 
     async assertContactButton() {
         await expect(this.contactButtons.nth(0)).toBeVisible();
-        await expect(this.contactButtons.nth(0)).toHaveAttribute('href', '/contact/');    
+        await expect(this.contactButtons.nth(0)).toHaveAttribute('href', results.links.contactShort);    
     };
 
     async assertSignUpButton() {
         await expect(this.signUpButton).toBeVisible();
-        await expect(this.signUpButton).toHaveAttribute('href', '/newsletter/');
+        await expect(this.signUpButton).toHaveAttribute('href', results.links.signUp);
     };
 
 };
