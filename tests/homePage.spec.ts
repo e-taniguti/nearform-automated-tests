@@ -20,24 +20,21 @@ test.describe('Home Page tests - Web', () => {
   test.describe('Page Content tests', () => {
     test('verify Main content', async ({ page }) => {
       const home = new HomePage(page);
-
+      // Verify texts
       await home.assertTitles();
-
       await home.assertParagraphs();
-
       await home.assertContentBoxParagraphs();
-
+      // Verify blog content number
       await home.assertNumberOfBlogs(3);
-
+      // Verify buttons
       await home.assertLearnMoreButton();
-
       await home.assertApplyNowButton();
-
       await home.assertViewBlogButton();
     });
 
     test('verify Footer content is displayed', async ({ page }) => {
       const footerPage = new FooterPage(page);
+      // Expect footer context to be displayed.
       await footerPage.isFooterVisible();
     });
 

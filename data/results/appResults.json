@@ -125,7 +125,9 @@
                 "Please select an option from the dropdown menu.",
                 "Please complete this required field.",
                 "Please complete all required fields."     
-            ]
+            ],
+            "emailFormatError" : "Email must be formatted correctly.",
+            "phoneFormatError" : "Must contain only numbers, +()-. and x."
         }
     },
     "links" : {
