@@ -75,6 +75,31 @@ test.describe('Header Page tests - Web', () => {
       await header.navigateToPage('Contact', 'contact');
     });
 
+    test('verify navigation to What We Do pages', async ({ page }) => {
+      const header = new HeaderPage(page);
+      // Hover and navigate to options in What We Do
+      await header.navigateToSubPage('services', 'Product Development', 'digital-product-development');
+      await header.navigateToSubPage('services', 'Application Modernisation', 'application-modernisation');
+      await header.navigateToSubPage('services', 'DevOps & Platform Engineering', 'devops-platform-engineering');
+      await header.navigateToSubPage('services', 'Data Engineering & Analytics', 'enterprise-data-engineering');
+    });
+
+    test('verify navigation to About pages', async ({ page }) => {
+      const header = new HeaderPage(page);
+      // Hover and navigate to options in About
+      await header.navigateToSubPage('about', 'About NearForm', 'about');
+      await header.navigateToSubPage('about', 'Why NearForm', 'why-nearform');
+      await header.navigateToSubPage('about', 'Open Source', 'open-source-community');
+    });
+
+    test('verify navigation to Resources pages', async ({ page }) => {
+      const header = new HeaderPage(page);
+      // Hover and navigate to options in About
+      await header.navigateToSubPage('resources', 'Blog', 'blog');
+      await header.navigateToSubPage('resources', 'Events', 'events');
+    });
+
+
   });
 
 });

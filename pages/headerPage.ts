@@ -46,6 +46,26 @@ export class HeaderPage {
         await this.page.waitForURL(`**/${url}/`, {waitUntil: 'networkidle'});
     };
 
+    async navigateToSubPage(page: 'about' | 'resources' | 'services', option: string, url: string) {
+        switch (page) {
+            case 'services':
+                await this.menuItems.nth(0).hover();
+                await this.servicesOptionsLabels.locator(`:text-matches("${option}")`).click();
+                break;
+            case 'about':
+                await this.menuItems.nth(2).hover();
+                await this.aboutOptionsLabels.locator(`:text-matches("${option}")`).click();
+                break;
+            case 'resources':
+                await this.menuItems.nth(4).hover();
+                await this.resourceOptionsLabels.locator(`:text-matches("${option}")`).click();
+                break;
+            defaut:
+                break;
+        };
+        await this.page.waitForURL(`**/${url}/`, {waitUntil: 'networkidle'});
+    };
+
     async clickMenuButton() {
         await this.menuButton.click();
     };
