@@ -1,5 +1,7 @@
 {
-    "appTitle" : "Enterprise Software Development & Capability Building",
+    "homeTitle" : "Enterprise Software Development & Capability Building",
+    "workTitle" : "Case studies and client stories from NearForm customers",
+    "contactTitle" : "Contact NearForm",
     "pages" : {
         "header" : {
             "menuLabels" : [
@@ -128,6 +130,45 @@
             ],
             "emailFormatError" : "Email must be formatted correctly.",
             "phoneFormatError" : "Must contain only numbers, +()-. and x."
+        },
+        "work" : {
+            "breadcrumb" : "Home/Our Work",
+            "title" : "Customer Stories",
+            "titleParagraph" : "Game-changing digital solutions that drive innovation.",
+            "subTitles" : [
+                "RENALYTIX: Helping to Eradicate Kidney Disease",
+                "TREEDOM: BUILDING VELOCITY, SCALE AND DIGITAL CAPABILITY",
+                "What Our Clients Say",
+                "TELUS Digital",
+                "IBM",
+                "Our Clients"
+            ],
+            "paragraphs" : [
+                "Renalytix is on an incredible mission to eradicate kidney disease. We helped to develop a diagnostics data platform that has the potential to stop kidney disease in its tracks.",
+                "We worked with Treedom to increase the business’ digital capabilities as well as assist with re-engineering its processes to better cope with high traffic volumes.",
+                "“Generally the time to market for any new app is about 30-40% less than it was, which is huge!”",
+                "Steve Tannock",
+                "Director – Platform Technology and Tools",
+                "“With NearForm, we found a partner who could help us explore ‘the art of the possible’.”",
+                "Carlo Marcoli",
+                "API Economy Solutions Leader – Europe"
+            ],
+            "cardLinks" : [
+                "https://www.nearform.com/work/building-digital-services-for-the-governments-of-tomorrow/",
+                "https://www.nearform.com/work/building-velocity-scale-and-digital-capability-at-treedom/",
+                "https://www.nearform.com/work/helping-eradicate-kidney-disease-renalytix/",
+                "https://www.nearform.com/work/skycatch-large-data-platform-development/",
+                "https://www.nearform.com/work/making-omnichannel-work-telus/",
+                "https://www.nearform.com/work/digital-transformation-ambassador-theatre-group/",
+                "https://www.nearform.com/work/net-a-porter-enhance-system-performance/",
+                "https://www.nearform.com/work/covid-app-development/",
+                "https://www.nearform.com/work/epicurious-migrate-to-node-js/",
+                "https://www.nearform.com/work/datumize-client-story/",
+                "https://www.nearform.com/work/london-school-of-marketing-software-modernisation/",
+                "https://www.nearform.com/work/ernst-young-platform-development/",
+                "https://www.nearform.com/work/unified-content-management-system-conde-nast/",
+                "https://www.nearform.com/work/ibm-open-banking-app-development/"
+            ]
         }
     },
     "links" : {
@@ -149,7 +190,9 @@
         "nearform" : "https://www.nearform.com/",
         "openSourceCommunity" : "https://www.nearform.com/open-source-community/",
         "privacyPolicy" : "https://www.nearform.com/privacy-statement/",
+        "renalytix" : "https://www.nearform.com/work/helping-eradicate-kidney-disease-renalytix/",
         "signUp" : "/newsletter/",
+        "treedom" : "https://www.nearform.com/work/building-velocity-scale-and-digital-capability-at-treedom/",
         "tweeter" : "https://twitter.com/nearform",
         "whatWeDo" : "/what-we-do/",
         "whyNearForm" : "https://www.nearform.com/why-nearform/",

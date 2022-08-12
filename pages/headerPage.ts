@@ -62,10 +62,6 @@ export class HeaderPage {
         await this.servicesExpandButton.click();
     };
 
-    async assertAppTitle() {
-        await expect(this.page).toHaveTitle(results.appTitle);
-    }
-
     async assertAppLogo() {
         await expect(this.logo).toBeVisible();
         await expect(this.logo).toHaveAttribute('href', results.links.nearform);

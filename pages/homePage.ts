@@ -1,11 +1,6 @@
 import { expect, Locator, Page } from "@playwright/test";
 import * as results from "../data/results/appResults.json";
 
-const titleValues = results.pages.home.titles;
-const paragraphValues = results.pages.home.paragraphs;
-const contentBoxParagraphValues = results.pages.home.contentBoxesParagraphs;
-
-
 export class HomePage {
     // Types definition
     readonly page: Page;
@@ -22,26 +17,30 @@ export class HomePage {
     constructor(page: Page) {
         this.page = page;
         this.applyNowButton = page.locator('a:has-text("Apply Now")');
-        this.blogTexts = page.locator('#main >> .fusion-blog-shortcode >> p');
-        this.blogTitles = page.locator('#main >> .fusion-blog-shortcode >> h2');
-        this.contentBoxParagraphs = page.locator('#main >> .fusion-content-boxes >> p');
+        this.blogTexts = page.locator('#content >> .fusion-blog-shortcode >> p');
+        this.blogTitles = page.locator('#content >> .fusion-blog-shortcode >> h2');
+        this.contentBoxParagraphs = page.locator('#content >> .fusion-content-boxes >> p');
         this.learnMoreButton = page.locator('a:has-text("Learn More")');
-        this.paragraphs = page.locator('#main >> .fusion-text > p');
+        this.paragraphs = page.locator('#content >> .fusion-text > p');
         this.readMoreButtons = page.locator('a:has-text("Read More")');
-        this.titles = page.locator('#main >> [class ^= "title-heading"]');
+        this.titles = page.locator('#content >> [class ^= "title-heading"]');
         this.viewBlogButton = page.locator('a:has-text("View the Blog")');
     };
 
+    async assertPageTitle() {
+        await expect(this.page).toHaveTitle(results.homeTitle);
+    }
+
     async assertTitles() {
-        await expect(this.titles).toHaveText(titleValues);      
+        await expect(this.titles).toHaveText(results.pages.home.titles);      
     };
 
     async assertParagraphs() {
-        await expect(this.paragraphs).toHaveText(paragraphValues);      
+        await expect(this.paragraphs).toHaveText(results.pages.home.paragraphs);      
     };
 
     async assertContentBoxParagraphs() {
-        await expect(this.contentBoxParagraphs).toHaveText(contentBoxParagraphValues);      
+        await expect(this.contentBoxParagraphs).toHaveText(results.pages.home.contentBoxesParagraphs);      
     };
 
     async assertNumberOfBlogs(qty: number) {

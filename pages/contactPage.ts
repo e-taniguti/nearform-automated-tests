@@ -23,7 +23,7 @@ export class ContactPage {
         this.iframe = page.frameLocator('#hs-form-iframe-0');
         this.bannerContext = page.locator('#content >> .fusion-fullwidth').nth(0);
         this.formContext = page.locator('#content >> .fusion-fullwidth').nth(1);
-        this.formTitle = page.locator('h1');
+        this.formTitle = page.locator('.fusion-title h1');
     
         this.bannerTexts = this.bannerContext.locator('p');
         this.formTexts = this.formContext.locator('p');
@@ -71,6 +71,10 @@ export class ContactPage {
 
     async typePhone(phone: string) {
         await this.phoneInput.type(phone);
+    };
+
+    async assertPageTitle() {
+        await expect(this.page).toHaveTitle(results.contactTitle);
     };
 
     async assertBannerTexts() {

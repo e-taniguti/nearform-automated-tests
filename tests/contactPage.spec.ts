@@ -7,7 +7,9 @@ import { FooterPage } from '../pages/footerPage';
 test.describe('Contact Page tests', () => {
   test.beforeEach(async ({ page }, testInfo) => {
     const utils = new Utils(page);
+    const contact = new ContactPage(page); 
     await utils.visit('/contact/');
+    await contact.assertPageTitle();
   });
 
   test.describe.skip('Accessibility test', () => {

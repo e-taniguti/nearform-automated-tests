@@ -1,17 +1,17 @@
 // @ts-check
 import { test } from '@playwright/test';
+
 import { Utils } from '../utils/utils';
+import { WorkPage } from '../pages/workPage';
 import { FooterPage } from '../pages/footerPage';
-import { HomePage } from '../pages/homePage';
 
-test.describe('Home Page tests - Web', () => {
-  test.beforeEach(async ({ page }, testInfo) => {
+test.describe('Work Page tests', () => {
+  test.beforeEach(async ({ page }) => {
     const utils = new Utils(page);
-    const home = new HomePage(page);
-    await utils.visit('/');
-    // Expect the page has the correct title..
-    await home.assertPageTitle();
-
+    const work = new WorkPage(page); 
+    await utils.visit('/work/');
+    // Expect the page has the correct title.
+    await work.assertPageTitle();
   });
 
   test.describe.skip('Accessibility test', () => {
@@ -22,18 +22,22 @@ test.describe('Home Page tests - Web', () => {
   });
 
   test.describe('Page Content tests', () => {
+    test('verify breadcrumb information', async ({ page }) => {   
+      const work = new WorkPage(page); 
+      // Expect breadcrumb to have correct path.
+      await work.assertBreadcrumb();
+      await work.assertBreadcrumbLinks();
+    });
+  
     test('verify Main content', async ({ page }) => {
-      const home = new HomePage(page);
+      const work = new WorkPage(page); 
       // Verify texts
-      await home.assertTitles();
-      await home.assertParagraphs();
-      await home.assertContentBoxParagraphs();
-      // Verify blog content number
-      await home.assertNumberOfBlogs(3);
+      await work.assertTitles();
+      await work.assertParagraphs();
       // Verify buttons
-      await home.assertLearnMoreButton();
-      await home.assertApplyNowButton();
-      await home.assertViewBlogButton();
+      await work.assertReadStoryButtons();
+      // Verify card links
+      await work.assertCardLinks();
     });
 
     test('verify Footer content is displayed', async ({ page }) => {
@@ -43,4 +47,6 @@ test.describe('Home Page tests - Web', () => {
     });
 
   });
+
 });
+

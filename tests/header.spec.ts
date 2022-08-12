@@ -17,9 +17,6 @@ test.describe('Header tests - Mobile', () => {
     await utils.visit('/');
 
     const header = new HeaderPage(page);
-
-    // Expect the page has the correct title..
-    await header.assertAppTitle();;
     // Expect logo to have the correct link.
     await header.assertAppLogo();
     // Expect button Menu to be displayed.
@@ -45,9 +42,6 @@ test.describe('Header Page tests - Web', () => {
   test.describe('Header Menu tests', () => {
     test('verify Logo and menu links', async ({ page }) => {
       const headerPage = new HeaderPage(page);
-
-      // Expect the page has the correct title..
-      await headerPage.assertAppTitle();;
       // Expect logo to have the correct link.
       await headerPage.assertAppLogo();
       // Expect menu to have correct labels.
