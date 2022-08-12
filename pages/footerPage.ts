@@ -46,40 +46,37 @@ export class FooterPage {
     };
 
     async assertSocialMediaLinks() {
-        await expect(this.socialLinks.nth(0)).toHaveAttribute('href', results.links.linkedIn);
-        await expect(this.socialLinks.nth(1)).toHaveAttribute('href', results.links.tweeter);
-        await expect(this.socialLinks.nth(2)).toHaveAttribute('href', results.links.facebook);
-        await expect(this.socialLinks.nth(3)).toHaveAttribute('href', results.links.youtube);
-        await expect(this.socialLinks.nth(4)).toHaveAttribute('href', results.links.instagram);
+        const length = await this.socialLinks.count();
+        for (let i=0; i < length; i++) {
+            await expect(this.socialLinks.nth(i)).toHaveAttribute('href', results.pages.footer.socialMediaLinks[i]);
+        };
     };
 
     async assertWhatWeDoOptions() {
-        await expect(this.servicesLinks).toHaveText(whatWeDoLabels);      
-        await expect(this.servicesLinks.nth(0)).toHaveAttribute('href', results.links.digitalProductDevelopment);
-        await expect(this.servicesLinks.nth(1)).toHaveAttribute('href', results.links.applicationModernisation);
-        await expect(this.servicesLinks.nth(2)).toHaveAttribute('href', results.links.devopsPlatformEngineering);
-        await expect(this.servicesLinks.nth(3)).toHaveAttribute('href', results.links.enterpriseDataEngineering);    
+        await expect(this.servicesLinks).toHaveText(whatWeDoLabels); 
+        const length = await this.servicesLinks.count();
+        for (let i=0; i < length; i++) {
+            await expect(this.servicesLinks.nth(i)).toHaveAttribute('href', results.pages.footer.servicesLinks[i]);
+        };
     };
 
     async assertAboutOptions() {
         await expect(this.companyLinks).toHaveText(aboutLabels);
-        await expect(this.companyLinks.nth(0)).toHaveAttribute('href', results.links.accessibilityStatement);
-        await expect(this.companyLinks.nth(1)).toHaveAttribute('href', results.links.carrers);
-        await expect(this.companyLinks.nth(2)).toHaveAttribute('href', results.links.contact);
-        await expect(this.companyLinks.nth(3)).toHaveAttribute('href', results.links.work);
-        await expect(this.companyLinks.nth(4)).toHaveAttribute('href', results.links.openSourceCommunity);
-        await expect(this.companyLinks.nth(5)).toHaveAttribute('href', results.links.whyNearForm);    
+        const length = await this.companyLinks.count();
+        for (let i=0; i < length; i++) {
+            await expect(this.companyLinks.nth(i)).toHaveAttribute('href', results.pages.footer.aboutLinks[i]);
+        };
     };
 
     async assertResourcesOptions() {
         await expect(this.resourcesLinks).toHaveText(resourceLabels);
-        await expect(this.resourcesLinks.nth(0)).toHaveAttribute('href', results.links.blog);
-        await expect(this.resourcesLinks.nth(1)).toHaveAttribute('href', results.links.events);    
+        await expect(this.resourcesLinks.nth(0)).toHaveAttribute('href', results.pages.footer.resourceLinks[0]);
+        await expect(this.resourcesLinks.nth(1)).toHaveAttribute('href', results.pages.footer.resourceLinks[1]);    
     };
 
     async assertContactButton() {
         await expect(this.contactButtons.nth(0)).toBeVisible();
-        await expect(this.contactButtons.nth(0)).toHaveAttribute('href', results.links.contactShort);    
+        await expect(this.contactButtons.nth(0)).toHaveAttribute('href', results.links.contact);    
     };
 
     async assertSignUpButton() {

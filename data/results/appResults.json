@@ -59,6 +59,31 @@
             "resourceLabels" : [
                 "Blog",
                 "Events"
+            ],
+            "socialMediaLinks" : [
+                "https://www.linkedin.com/company/nearform/?originalSubdomain=ie",
+                "https://twitter.com/nearform",
+                "https://www.facebook.com/NearFormLtd",
+                "https://www.youtube.com/channel/UCp2Tsbjd3P8itnBHUNHi82A",
+                "https://www.instagram.com/nearform_hq"
+            ],
+            "servicesLinks" : [
+                "https://www.nearform.com/services/digital-product-development/",
+                "https://www.nearform.com/services/application-modernisation/",
+                "https://www.nearform.com/services/devops-platform-engineering/",
+                "https://www.nearform.com/services/enterprise-data-engineering/"
+            ],
+            "aboutLinks" : [
+                "https://www.nearform.com/accessibility-statement/",
+                "https://www.nearform.com/careers/",
+                "https://www.nearform.com/contact/",
+                "https://www.nearform.com/work/",
+                "https://www.nearform.com/open-source-community/",
+                "https://www.nearform.com/why-nearform/"
+            ],
+            "resourceLinks" : [
+                "https://www.nearform.com/blog/",
+                "https://www.nearform.com/events/"
             ]
         },
         "home" : {
@@ -172,31 +197,14 @@
         }
     },
     "links" : {
-        "accessibilityStatement" : "https://www.nearform.com/accessibility-statement/",
-        "applicationModernisation" : "https://www.nearform.com/services/application-modernisation/",
-        "blog" : "https://www.nearform.com/blog/",
-        "blogShort" : "/blog/",
-        "carrers" : "https://www.nearform.com/careers/",
-        "careersShort" : "/careers/",
-        "contact" : "https://www.nearform.com/contact/",
-        "contactShort" : "/contact/",
-        "devopsPlatformEngineering" : "https://www.nearform.com/services/devops-platform-engineering/",
-        "digitalProductDevelopment" : "https://www.nearform.com/services/digital-product-development/",
-        "enterpriseDataEngineering" : "https://www.nearform.com/services/enterprise-data-engineering/",
-        "events" : "https://www.nearform.com/events/",
-        "facebook" : "https://www.facebook.com/NearFormLtd",
-        "instagram" : "https://www.instagram.com/nearform_hq",
-        "linkedIn" : "https://www.linkedin.com/company/nearform/?originalSubdomain=ie",
+        "blog" : "/blog/",
+        "careers" : "/careers/",
+        "contact" : "/contact/",
         "nearform" : "https://www.nearform.com/",
-        "openSourceCommunity" : "https://www.nearform.com/open-source-community/",
         "privacyPolicy" : "https://www.nearform.com/privacy-statement/",
         "renalytix" : "https://www.nearform.com/work/helping-eradicate-kidney-disease-renalytix/",
         "signUp" : "/newsletter/",
         "treedom" : "https://www.nearform.com/work/building-velocity-scale-and-digital-capability-at-treedom/",
-        "tweeter" : "https://twitter.com/nearform",
-        "whatWeDo" : "/what-we-do/",
-        "whyNearForm" : "https://www.nearform.com/why-nearform/",
-        "work" : "https://www.nearform.com/work/",
-        "youtube" : "https://www.youtube.com/channel/UCp2Tsbjd3P8itnBHUNHi82A"
+        "whatWeDo" : "/what-we-do/"
     }
 }

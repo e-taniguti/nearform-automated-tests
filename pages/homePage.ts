@@ -56,12 +56,12 @@ export class HomePage {
 
     async assertApplyNowButton() {
         await expect(this.applyNowButton).toBeVisible();
-        await expect(this.applyNowButton).toHaveAttribute('href', results.links.careersShort);
+        await expect(this.applyNowButton).toHaveAttribute('href', results.links.careers);
     };
 
     async assertViewBlogButton() {
         await expect(this.viewBlogButton).toBeVisible();
-        await expect(this.viewBlogButton).toHaveAttribute('href', results.links.blogShort);
+        await expect(this.viewBlogButton).toHaveAttribute('href', results.links.blog);
       };
 
 };
