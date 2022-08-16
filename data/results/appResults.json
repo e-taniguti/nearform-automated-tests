@@ -1,6 +1,7 @@
 {
     "homeTitle" : "Enterprise Software Development & Capability Building",
     "workTitle" : "Case studies and client stories from NearForm customers",
+    "careersTitle" : "Careers - NearForm",
     "contactTitle" : "Contact NearForm",
     "pages" : {
         "header" : {
@@ -194,6 +195,57 @@
                 "https://www.nearform.com/work/unified-content-management-system-conde-nast/",
                 "https://www.nearform.com/work/ibm-open-banking-app-development/"
             ]
+        },
+        "careers" : {
+            "title" : "Careers",
+            "subTitles" : [
+                "Open positions",
+                "FAQs",
+                "What NearFormers say",
+                "Coming Together for NearFest"
+            ],
+            "values" : [
+                "We’re Bold We’re Flexible We’re Open We’re Empowering"
+            ],
+            "nfSayTitles" : [
+                "Engineering",
+                "Design"
+            ],
+            "nfSayParagraphs" : [
+                "We work hand-in-hand with customers to avoid the common customer-vendor relationship problems.",
+                "NearForm really helps employees at every level, we really feel cared about."
+            ],
+            "nfSayAuthors" : [
+                "—Sonya Hogan, Technical Director",
+                "—Antoine Marin, Design Director"
+            ],
+            "filterLabel" : "Department",
+            "filterOptions" : [
+                "All Departments",
+                "Consulting Services",
+                "Delivery",
+                "DevOps & Cloud",
+                "Product & Design",
+                "Software Development",
+                "Technical Leadership",
+                "Sales",
+                "Talent"
+            ],
+            "faqQuestions" : [
+                "Where are your roles based?",
+                "Do you keep past candidates' applications for future openings?",
+                "Can I apply by email?",
+                "I saw a role recently but can't find it anymore, can I still apply?",
+                "I'm a recruiter, can we work together?"
+            ],
+            "faqAnswers" : [
+                "We work remotely with our main HQ based in Tramore, the south of Ireland. Each job description will say where the role is usually based, though we’re big fans of flexible working!",
+                "It’s best to keep your eye on our jobs board and submit a new application for any roles which you’re interested in. Our system logs all the applications we get, so we can keep candidates in mind for other roles if they stand out.",
+                "We don’t accept email applications. If there’s a role which interests you please submit an application via the relevant job description above. If there aren’t any roles which are the right fit at the moment, please follow our social profiles to keep up to date with new roles.",
+                "If a role isn’t on our website it means we’re not accepting applications for the position anymore. We process applications on a rolling basis and encourage everyone to apply as soon as they can. We’re growing super fast though, so sign up for our email updates to be the first to hear about new roles at NearForm.",
+                "We’re not looking for any recruitment support right now. We’ve got a big enough team to hire most of the roles we need. But we’ll let you know if that changes!"
+            ]
+
         }
     },
     "links" : {
