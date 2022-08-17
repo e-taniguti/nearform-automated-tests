@@ -62,5 +62,32 @@ export class CareersPage {
         await expect(this.filterOptions).toHaveText(results.pages.careers.filterOptions);
     };
 
+    async selectDept(dept: string) {
+        await this.page.mouse.wheel(0, 500);
+        await this.iframe.locator('#s2id_departments-select > a').click();
+        await this.iframe.locator(`#select2List0 > li:has-text("${dept}")`).click();
+    };
+
+    async assertCardsByDept(dept: string) {
+        let deptNumber = '';
+        switch (dept) {
+            case 'Delivery':
+                deptNumber = '4004207003';
+                break;
+            case 'Sales':
+                deptNumber = '4005136003';
+                break;
+            defaut:
+                deptNumber = 'all';
+                break;
+        };
+       
+        await this.page.waitForTimeout(1000);
+        const length = await this.iframe.locator(`div[department_id="${deptNumber}"]`).count();
+        for (let i = 0; i < length; i++) {
+            await expect(this.iframe.locator(`div[department_id="${deptNumber}"]`).nth(i)).toBeVisible();
+        };
+        
+    };
 
 };

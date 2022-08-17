@@ -32,5 +32,15 @@ test.describe('Careers Page tests', () => {
             await careers.assertJobsFilter();
         });
       
+        test('verify department filter', async ({ page }) => {
+          const careers = new CareersPage(page); 
+
+          await careers.selectDept('Delivery');
+          await careers.assertCardsByDept('Delivery');
+          
+          await careers.selectDept('Sales');
+          await careers.assertCardsByDept('Sales');
+      });
+
     });
 });  
