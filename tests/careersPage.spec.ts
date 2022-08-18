@@ -35,6 +35,8 @@ test.describe('Careers Page tests', () => {
         test('verify department filter', async ({ page }) => {
           const careers = new CareersPage(page); 
 
+          await careers.assertCardsByDept('All Departments');
+
           await careers.selectDept('Delivery');
           await careers.assertCardsByDept('Delivery');
           

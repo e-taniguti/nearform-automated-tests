@@ -5,6 +5,7 @@ import * as results from "../data/results/appResults.json";
 export class CareersPage {
     // Types definition
     readonly page: Page;
+    readonly deptSelect: Locator;
     readonly faqAnswers: Locator;
     readonly faqQuestions: Locator;
     readonly filterLabel: Locator;
@@ -29,6 +30,7 @@ export class CareersPage {
         this.title = page.locator('#content >> h1[class ^= "title-heading"]');
         this.values = page.locator('#content >> .fusion-text > p');
 
+        this.deptSelect = this.iframe.locator('#s2id_departments-select > a');
         this.filterLabel = this.iframe.locator('.filter-label');
         this.filterOptions = this.iframe.locator('#departments-select > option');
     };
@@ -62,14 +64,9 @@ export class CareersPage {
         await expect(this.filterOptions).toHaveText(results.pages.careers.filterOptions);
     };
 
-    async selectDept(dept: string) {
-        await this.page.mouse.wheel(0, 500);
-        await this.iframe.locator('#s2id_departments-select > a').click();
-        await this.iframe.locator(`#select2List0 > li:has-text("${dept}")`).click();
-    };
-
     async assertCardsByDept(dept: string) {
-        let deptNumber = '';
+        const allDeptNumber = ['4040466003', '4004207003', '4032457003', '4039251003', '4005105003', '4032528003', '4005136003', '4040073003'];
+        let deptNumber = 'all';
         switch (dept) {
             case 'Delivery':
                 deptNumber = '4004207003';
@@ -77,17 +74,29 @@ export class CareersPage {
             case 'Sales':
                 deptNumber = '4005136003';
                 break;
-            defaut:
-                deptNumber = 'all';
-                break;
         };
        
-        await this.page.waitForTimeout(1000);
+        if (deptNumber === 'all') {
+            allDeptNumber.forEach(async (dept) => {
+                this.isJobCardsVisible(dept);             
+            });
+        } else {
+            await this.page.waitForTimeout(1000);
+            this.isJobCardsVisible(deptNumber);             
+        };
+    };
+
+    async selectDept(dept: string) {
+        await this.page.mouse.wheel(0, 500);
+        await this.deptSelect.click();
+        await this.iframe.locator(`#select2List0 > li:has-text("${dept}")`).click();
+    };
+
+    async isJobCardsVisible(deptNumber: string) {
         const length = await this.iframe.locator(`div[department_id="${deptNumber}"]`).count();
         for (let i = 0; i < length; i++) {
             await expect(this.iframe.locator(`div[department_id="${deptNumber}"]`).nth(i)).toBeVisible();
-        };
-        
+        };                
     };
 
 };
