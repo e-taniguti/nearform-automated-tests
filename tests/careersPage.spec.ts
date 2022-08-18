@@ -42,7 +42,10 @@ test.describe('Careers Page tests', () => {
           
           await careers.selectDept('Sales');
           await careers.assertCardsByDept('Sales');
-      });
+
+          await careers.selectDept('Software Development');
+          await careers.assertCardsByDept('Software Development');
+        });
 
     });
 });  

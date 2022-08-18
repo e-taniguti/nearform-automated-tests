@@ -65,24 +65,34 @@ export class CareersPage {
     };
 
     async assertCardsByDept(dept: string) {
-        const allDeptNumber = ['4040466003', '4004207003', '4032457003', '4039251003', '4005105003', '4032528003', '4005136003', '4040073003'];
-        let deptNumber = 'all';
+        const allDeptNumber = [4040466003, 4004207003, 4032457003, 4039251003, 4005105003, 4032528003, 4005136003, 4040073003];
+        let deptNumber;
+        let deptNumberHidden;
         switch (dept) {
             case 'Delivery':
-                deptNumber = '4004207003';
+                deptNumber = 4004207003;
+                deptNumberHidden = [4040466003, 4032457003, 4039251003, 4005105003, 4032528003, 4005136003, 4040073003];
                 break;
             case 'Sales':
-                deptNumber = '4005136003';
+                deptNumber = 4005136003;
+                deptNumberHidden = [4040466003, 4004207003, 4032457003, 4039251003, 4005105003, 4032528003, 4040073003];
+                break;
+            case 'Software Development':
+                deptNumber = 4005105003;
+                deptNumberHidden = [4040466003, 4004207003, 4032457003, 4039251003, 4032528003, 4005136003, 4040073003];
                 break;
         };
        
-        if (deptNumber === 'all') {
+        if (!deptNumber) {
             allDeptNumber.forEach(async (dept) => {
-                this.isJobCardsVisible(dept);             
+                this.isJobCardsVisible(dept, true);             
             });
         } else {
-            await this.page.waitForTimeout(1000);
-            this.isJobCardsVisible(deptNumber);             
+            this.isJobCardsVisible(deptNumber, true);       
+            deptNumberHidden.forEach(async (dept) => {
+                this.isJobCardsVisible(dept, false);             
+            });
+      
         };
     };
 
@@ -92,10 +102,14 @@ export class CareersPage {
         await this.iframe.locator(`#select2List0 > li:has-text("${dept}")`).click();
     };
 
-    async isJobCardsVisible(deptNumber: string) {
+    async isJobCardsVisible(deptNumber: number, visible: boolean) {
         const length = await this.iframe.locator(`div[department_id="${deptNumber}"]`).count();
         for (let i = 0; i < length; i++) {
-            await expect(this.iframe.locator(`div[department_id="${deptNumber}"]`).nth(i)).toBeVisible();
+            if (visible) {
+                await expect(this.iframe.locator(`div[department_id="${deptNumber}"]`).nth(i)).toBeVisible();
+            } else {
+                await expect(this.iframe.locator(`div[department_id="${deptNumber}"]`).nth(i)).not.toBeVisible();
+            };
         };                
     };
 
